@@ -1,0 +1,27 @@
+{
+  "name": "cypress-cucumber-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run --browser chrome --headed --env allure=true",
+    "posttest": "npm run allure:generate:report & npm run allure:open:report",
+    "allure:clear": "rmdir /Q /S allure-results & rmdir /Q /S allure-report",
+    "allure:generate:report": ".\\node_modules\\.bin\\allure generate allure-results --clean -o allure-report",
+    "allure:open:report": ".\\node_modules\\.bin\\allure serve"
+  },
+  "author": "Harold Alvarez",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^15.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
+    "@shelex/cypress-allure-plugin": "^2.34.0",
+    "allure-commandline": "^2.20.1",
+    "cypress": "^12.2.0",
+    "cypress-xpath": "^2.0.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/e2e/application/step_definitions/[filepath]Steps.{js,ts}",
+    "nonGlobalStepDefinitions": true
+  }
+}
